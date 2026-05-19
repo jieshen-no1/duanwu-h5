@@ -243,11 +243,13 @@
       <p class="sub" style="font-size:.75rem">制作：传统文化交互传播课程作业</p>
     </section>
 
-    <!-- 18 结束 -->
+<!-- 18 结束 -->
     <section class="page" data-page="18">
       <h1>端午安康</h1>
       <p class="sub" style="font-size:1.1rem;letter-spacing:.3em">愿你岁岁无忧</p>
       <div style="font-size:4rem;margin:24px 0;animation:float 2s ease-in-out infinite">🌿🛶🫔</div>
+      <div id="qrcode" class="qr-section"></div>
+      <p class="sub" style="font-size:.8rem;opacity:.7;margin-top:8px">扫码分享端午祝福</p>
       <button type="button" class="btn" onclick="goToPage(1)">再看一遍</button>
     </section>
   </div>
@@ -255,6 +257,16 @@
   <button type="button" class="page-nav-btn" id="globalNext" title="下一页">下一页 ▼</button>
   <button type="button" class="page-nav-btn page-nav-prev" id="globalPrev" title="上一页">▲ 上一页</button>
   <p class="nav-hint">上滑/下滑、滚轮或点右下角按钮翻页</p>
-  <script src="js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="https://cdn.staticfile.org/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var c = document.getElementById('qrcode');
+  if (c && typeof QRCode !== 'undefined') {
+    new QRCode(c, { text: location.href.split('#')[0], width: 140, height: 140, colorDark: '#1a3d2e', colorLight: '#fff', correctLevel: QRCode.CorrectLevel.M });
+  }
+});
+</script>
 </body>
 </html>
+
