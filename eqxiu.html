@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>指尖上的传承 · 端午</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:"STKaiti","KaiTi","SimSun",serif;background:#0d3b2e;color:#f5f0e1;overflow-x:hidden}
+body{scroll-behavior:smooth}
+.page{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 20px;text-align:center;position:relative;background:linear-gradient(165deg,#0d3b2e 0%,#1a5c45 40%,#2d7a5f 100%)}
+.page::before{content:"";position:absolute;inset:0;opacity:.12;pointer-events:none;background:url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='%23fff' fill-opacity='.3'/%3E%3C/svg%3E")}
+h1{font-size:1.75rem;letter-spacing:.2em;text-shadow:0 2px 8px rgba(0,0,0,.3);margin-bottom:.5rem}
+h2{font-size:1.25rem;letter-spacing:.15em;margin-bottom:1rem;color:#e8d5a3}
+.sub{font-size:.9rem;opacity:.85;line-height:1.8;max-width:320px;margin:0 auto 1rem}
+.tag{display:inline-block;padding:4px 12px;border:1px solid #e8d5a3;border-radius:20px;font-size:.75rem;color:#e8d5a3;margin-bottom:12px}
+.btn{display:inline-block;padding:12px 28px;margin:6px;background:linear-gradient(135deg,#c9a227,#e8d5a3);color:#1a3d2e;border:none;border-radius:24px;font-size:.95rem;cursor:pointer;font-family:inherit;box-shadow:0 4px 12px rgba(0,0,0,.25);text-decoration:none}
+.btn-outline{background:transparent;color:#e8d5a3;border:1px solid #e8d5a3}
+.card{background:rgba(0,0,0,.25);border-radius:12px;padding:16px;margin:8px auto;max-width:340px;line-height:1.8}
+.poem-block{max-width:320px;padding:20px 16px;background:rgba(0,0,0,.3);border-radius:8px;margin:12px auto;line-height:2.4}
+.poem-block .poem-title{font-size:1.1rem;font-weight:bold;color:#e8d5a3;margin-bottom:4px}
+.poem-block .poem-dynasty{font-size:.75rem;opacity:.7;margin-bottom:8px}
+.poem-block .poem-text{white-space:pre-line;font-size:1rem;line-height:2.2}
+.poem-block .poem-author{font-size:.85rem;margin-top:12px;opacity:.8}
+video{width:100%;max-width:340px;border-radius:8px;background:#000;min-height:160px}
+.cover-art{width:260px;max-width:90vw;height:160px;margin:16px auto;background:radial-gradient(ellipse at center,rgba(232,213,163,.25),transparent 70%);border:2px solid rgba(232,213,163,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:4rem}
+.share-box{background:rgba(0,0,0,.25);padding:16px;border-radius:12px;max-width:300px;margin:0 auto;font-size:.85rem;line-height:1.8}
+.music-btn{position:fixed;top:12px;left:12px;z-index:200;width:36px;height:36px;border-radius:50%;border:1px solid #e8d5a3;background:rgba(0,0,0,.4);color:#e8d5a3;cursor:pointer;font-size:1rem}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.fade-in{animation:fadeIn .8s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.nav-dots{position:fixed;right:12px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:8px}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
+.nav-dot.active{background:#e8d5a3;transform:scale(1.5)}
+.section-title{position:relative;display:inline-block;padding:0 20px}
+.section-title::before,.section-title::after{content:"";position:absolute;top:50%;width:30px;height:1px;background:#e8d5a3;opacity:.5}
+.section-title::before{right:100%}
+.section-title::after{left:100%}
+</style>
+</head>
+<body>
+
+<button class="music-btn" id="musicBtn" title="背景音乐">♪</button>
+<audio id="bgm" loop preload="auto"><source src="assets/bgm.mp3" type="audio/mpeg"></audio>
+<div class="nav-dots" id="navDots"></div>
+
+<!-- 封面 -->
+<section class="page" id="page-cover">
+  <span class="tag">中华传统文化</span>
+  <h1>指尖上的传承</h1>
+  <h2>端午 · 粽情龙舟</h2>
+  <div class="cover-art">🌿🐉🫔</div>
+  <p class="sub">以数字交互，重温千年民俗</p>
+</section>
+
+<!-- 端午记忆 -->
+<section class="page" id="page-memory">
+  <h2>你的端午记忆</h2>
+  <div class="card">
+    <p>儿时包粽的清香，江边龙舟的鼓声，艾草挂门的习俗……</p>
+    <p style="margin-top:8px">每一个端午记忆，都是中华文化的脉搏。</p>
+  </div>
+</section>
+
+<!-- 挂艾草与菖蒲 -->
+<section class="page" id="page-aicao">
+  <h2>挂艾草与菖蒲</h2>
+  <div class="card">
+    <p>端午悬艾，驱邪避瘟。《荆楚岁时记》载：采艾为人形，悬户上。</p>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <p>菖蒲叶如剑，民间称「水剑」，与艾草同挂门楣，寓意吉祥平安。</p>
+  </div>
+  <p class="sub" style="margin-top:12px">艾草的芳香成分具有驱虫抑菌作用，是古人智慧的生活防疫。</p>
+</section>
+
+<!-- 佩香囊 -->
+<section class="page" id="page-xiangnang">
+  <h2>佩香囊 · 巧手传香</h2>
+  <div class="card">
+    <p>🧵 丝线 · 🌸 香料 · 🎀 流苏</p>
+    <p style="margin-top:8px">香囊已成！佩戴可避秽气、寄相思。</p>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <p><strong>囊身</strong>：绣吉祥纹样，承载祈福之意。</p>
+    <p><strong>流苏</strong>：摇曳生姿，步步生香。</p>
+    <p><strong>香料</strong>：丁香、艾叶等配伍，芳香醒脾。</p>
+  </div>
+</section>
+
+<!-- 包粽子 -->
+<section class="page" id="page-zongzi">
+  <h2>包粽子 · 南甜北咸</h2>
+  <div class="card">
+    <p>北方多枣泥、豆沙；江南偏爱碱水粽、豆沙粽。</p>
+  </div>
+  <div class="card" style="margin-top:8px">
+    <p>嘉兴肉粽、广东咸蛋黄肉粽，咸香馥郁。</p>
+  </div>
+  <p class="sub" style="margin-top:12px">相传屈原投江，百姓投粽于水，以免鱼虾伤及遗体，遂成千古习俗。</p>
+</section>
+
+<!-- 五彩绳 -->
+<section class="page" id="page-rope">
+  <h2>系五彩绳</h2>
+  <p class="sub">五色对应五行，祈愿平安吉祥</p>
+  <div style="display:flex;gap:12px;justify-content:center;margin:16px 0">
+    <span style="display:inline-block;width:36px;height:36px;border-radius:50%;background:#c0392b" title="赤属火，主南方"></span>
+    <span style="display:inline-block;width:36px;height:36px;border-radius:50%;background:#f1c40f" title="黄属土，居中"></span>
+    <span style="display:inline-block;width:36px;height:36px;border-radius:50%;background:#27ae60" title="青属木，主东方"></span>
+    <span style="display:inline-block;width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid #ccc" title="白属金，主西方"></span>
+    <span style="display:inline-block;width:36px;height:36px;border-radius:50%;background:#2980b9" title="黑属水，主北方"></span>
+  </div>
+</section>
+
+<!-- 饮雄黄酒 -->
+<section class="page" id="page-xionghuang">
+  <h2>饮雄黄酒</h2>
+  <div class="card">
+    <p>雄黄涂额，以避蛇虫。</p>
+    <p style="margin-top:8px">苏轼诗云：<br>彩线轻缠红玉臂，小符斜挂绿云鬟。</p>
+  </div>
+</section>
+
+<!-- 赛龙舟视频1 -->
+<section class="page" id="page-dragon1">
+  <h2>赛龙舟 · 百桨齐发</h2>
+  <video controls playsinline>
+    <source src="assets/dragon_boat.mp4" type="video/mp4">
+    您的浏览器不支持视频播放
+  </video>
+  <p class="sub" style="margin-top:12px">江畔集结，鼓声震天，百桨齐发，破浪争先</p>
+</section>
+
+<!-- 龙舟文化 -->
+<section class="page" id="page-dragon-culture">
+  <h2>龙舟文化</h2>
+  <div class="card">
+    <p><strong>龙头</strong>：雕刻威严，点睛后「活」了起来。</p>
+    <p style="margin-top:8px"><strong>龙身</strong>：修长容纳数十桨手，讲究协同。</p>
+    <p style="margin-top:8px"><strong>龙尾</strong>：上扬寓意乘风破浪、勇往直前。</p>
+  </div>
+  <p style="font-size:2.5rem;margin-top:16px">🥁🛶🎉🏆</p>
+</section>
+
+<!-- 端午诗词三首 -->
+<section class="page" id="page-poem1">
+  <h2><span class="section-title">端午诗词</span></h2>
+  <div class="poem-block fade-in">
+    <p class="poem-title">端午即事</p>
+    <p class="poem-dynasty">南宋 · 文天祥</p>
+    <p class="poem-text">五月五日午，赠我一枝艾。
+故人不可见，新知万里外。
+丹心照夙昔，鬓发日已改。
+我欲从灵均，三湘隔辽海。</p>
+    <p class="poem-author">—— 文天祥《端午即事》</p>
+  </div>
+</section>
+
+<section class="page" id="page-poem2">
+  <h2><span class="section-title">端午诗词</span></h2>
+  <div class="poem-block fade-in">
+    <p class="poem-title">浣溪沙·端午</p>
+    <p class="poem-dynasty">北宋 · 苏轼</p>
+    <p class="poem-text">轻汗微微透碧纨，
+明朝端午浴芳兰。
+流香涨腻满晴川。
+彩线轻缠红玉臂，
+小符斜挂绿云鬟。
+佳人相见一千年。</p>
+    <p class="poem-author">—— 苏轼《浣溪沙·端午》</p>
+  </div>
+</section>
+
+<section class="page" id="page-poem3">
+  <h2><span class="section-title">端午诗词</span></h2>
+  <div class="poem-block fade-in">
+    <p class="poem-title">端午日赐衣</p>
+    <p class="poem-dynasty">唐 · 杜甫</p>
+    <p class="poem-text">宫衣亦有名，端午被恩荣。
+细葛含风软，香罗叠雪轻。
+自天题处湿，当暑著来清。
+意内称长短，终身荷圣情。</p>
+    <p class="poem-author">—— 杜甫《端午日赐衣》</p>
+  </div>
+</section>
+
+<!-- 视频2: 当代端午 -->
+<section class="page" id="page-modern">
+  <h2>当代端午</h2>
+  <video controls playsinline>
+    <source src="assets/modern.mp4" type="video/mp4">
+    您的浏览器不支持视频播放
+  </video>
+  <p class="sub" style="margin-top:12px">非遗进校园、龙舟入奥、云端包粽……传统与现代交融，端午焕发新活力。</p>
+</section>
+
+<!-- 祈福海报 -->
+<section class="page" id="page-poster">
+  <h2>端午祈福海报</h2>
+  <p class="sub">输入你的名字，生成专属海报</p>
+  <input type="text" id="posterName" class="btn" style="background:rgba(0,0,0,.2);color:#fff;border:2px solid #e8d5a3;padding:12px;border-radius:8px;text-align:center;width:100%;max-width:260px;font-family:inherit;font-size:1rem;margin:12px 0" placeholder="请输入姓名" maxlength="8">
+  <button class="btn" id="genPoster">生成海报</button>
+  <canvas id="posterCanvas" style="max-width:280px;width:100%;border-radius:8px;margin-top:12px;display:none"></canvas>
+  <button class="btn" id="savePoster" style="display:none">保存图片</button>
+</section>
+
+<!-- 分享二维码 -->
+<section class="page" id="page-qr">
+  <h2>分享给朋友</h2>
+  <canvas id="qrCanvas" style="width:140px;height:140px;margin:16px auto;display:block"></canvas>
+  <p class="sub" style="font-size:.8rem">扫码即可查看本页面</p>
+  <p class="sub" style="font-size:.75rem;opacity:.7">制作：传统文化交互传播课程作业</p>
+</section>
+
+<!-- 尾页 -->
+<section class="page" id="page-end">
+  <h2>传承在指尖</h2>
+  <div class="share-box">
+    <p>每一缕艾香、每一声鼓点，都是中华文化的脉搏。愿你我共同守护这份记忆。</p>
+    <button class="btn" style="margin-top:12px" onclick="navigator.share&&navigator.share({title:'指尖上的传承·端午',text:'端午安康！',url:location.href}).catch(function(){alert('可截图分享本页')})">分享给好友</button>
+  </div>
+  <h1 style="margin-top:24px">端午安康</h1>
+  <p class="sub" style="font-size:1.1rem;letter-spacing:.3em">愿你岁岁无忧</p>
+  <div style="font-size:4rem;margin:24px 0;animation:float 2s ease-in-out infinite">🌿🛶🫔</div>
+</section>
+
+<script>
+(function(){
+  var bgm = document.getElementById('bgm');
+  var musicBtn = document.getElementById('musicBtn');
+  var playing = false;
+
+  musicBtn.addEventListener('click', function(){
+    if (!bgm) return;
+    if (playing) { bgm.pause(); musicBtn.textContent = '♪'; }
+    else { bgm.play().catch(function(){}); musicBtn.textContent = '♫'; }
+    playing = !playing;
+  });
+
+  // poster
+  var canvas = document.getElementById('posterCanvas');
+  var nameInput = document.getElementById('posterName');
+  document.getElementById('genPoster').addEventListener('click', function(){
+    var name = (nameInput.value || '').trim() || '朋友';
+    var ctx = canvas.getContext('2d');
+    canvas.width = 600;
+    canvas.height = 900;
+    var g = ctx.createLinearGradient(0,0,0,900);
+    g.addColorStop(0,'#1a5c45');
+    g.addColorStop(1,'#0d3b2e');
+    ctx.fillStyle = g;
+    ctx.fillRect(0,0,600,900);
+    ctx.strokeStyle = '#e8d5a3';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(40,40,520,820);
+    ctx.fillStyle = '#e8d5a3';
+    ctx.font = 'bold 48px KaiTi, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('端午安康',300,200);
+    ctx.font = '36px KaiTi, serif';
+    ctx.fillText(name,300,380);
+    ctx.font = '28px KaiTi, serif';
+    ctx.fillText('岁岁无忧 · 龙舟竞渡',300,480);
+    ctx.font = '120px serif';
+    ctx.fillText('🐉',300,650);
+    ctx.font = '22px KaiTi, serif';
+    ctx.fillText('指尖上的传承 · 2026',300,820);
+    canvas.style.display = 'block';
+    document.getElementById('savePoster').style.display = 'inline-block';
+  });
+  document.getElementById('savePoster').addEventListener('click', function(){
+    var a = document.createElement('a');
+    a.download = '端午祈福海报.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  });
+
+  // scroll nav dots
+  var pages = document.querySelectorAll('.page');
+  var dotsContainer = document.getElementById('navDots');
+  pages.forEach(function(_, i){
+    var dot = document.createElement('span');
+    dot.className = 'nav-dot';
+    dot.title = '第' + (i+1) + '页';
+    dot.addEventListener('click', function(){ pages[i].scrollIntoView({behavior:'smooth'}); });
+    dotsContainer.appendChild(dot);
+  });
+  var dots = document.querySelectorAll('.nav-dot');
+
+  function updateDots(){
+    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    var winH = window.innerHeight;
+    var idx = Math.round(scrollTop / winH);
+    dots.forEach(function(d,i){ d.classList.toggle('active', i === idx); });
+  }
+
+  // QR code
+  (function(){
+    var canvas = document.getElementById('qrCanvas');
+    if (!canvas) return;
+    var url = location.href;
+    var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(url);
+    var img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function(){
+      var ctx = canvas.getContext('2d');
+      canvas.width = 200;
+      canvas.height = 200;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,200,200);
+      ctx.drawImage(img,0,0,200,200);
+    };
+    img.onerror = function(){
+      var ctx = canvas.getContext('2d');
+      canvas.width = 200;
+      canvas.height = 200;
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,200,200);
+      ctx.fillStyle = '#333';
+      ctx.font = '14px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('部署后自动生成QR', 100, 105);
+    };
+    img.src = qrApi;
+  })();
+
+  // poem reading via speech
+  var poemBlocks = document.querySelectorAll('.poem-block');
+  poemBlocks.forEach(function(block){
+    block.style.cursor = 'pointer';
+    block.title = '点击朗读';
+    block.addEventListener('click', function(){
+      var textEl = block.querySelector('.poem-text');
+      if (!textEl) return;
+      var text = textEl.textContent.replace(/\n/g, '，');
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+        var utter = new SpeechSynthesisUtterance(text);
+        utter.lang = 'zh-CN';
+        utter.rate = 0.8;
+        utter.pitch = 1;
+        window.speechSynthesis.speak(utter);
+      }
+    });
+  });
+
+  // fade in pages
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) entry.target.classList.add('fade-in');
+    });
+  }, {threshold: 0.3});
+  pages.forEach(function(p){ observer.observe(p); });
+
+  window.addEventListener('scroll', updateDots);
+  updateDots();
+})();
+</script>
+
+</body>
+</html>

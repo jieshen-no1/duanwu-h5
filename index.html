@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>指尖上的传承 · 端午</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <button type="button" class="music-btn" id="musicBtn" title="背景音乐">♪</button>
+    <div class="progress" id="progress">1 / 18</div>
+    <audio id="bgm" loop preload="auto">
+      <source src="assets/bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 1 加载页 -->
+    <section class="page" data-page="1">
+      <div class="loader-wrap">
+        <div class="loader-boat">🛶</div>
+        <p class="sub">艾草飘香 · 龙舟竞渡</p>
+        <div class="loader-bar"><i></i></div>
+        <p class="sub" style="font-size:.75rem;margin-top:12px">《离骚》意境 · 轻音相伴</p>
+      </div>
+    </section>
+
+    <!-- 2 封面 -->
+    <section class="page" data-page="2">
+      <span class="tag">中华传统文化</span>
+      <h1>指尖上的传承</h1>
+      <h2>端午 · 粽情龙舟</h2>
+      <div class="cover-art">🌿🐉🫔</div>
+      <p class="sub">以数字交互，重温千年民俗</p>
+      <button type="button" class="btn" onclick="nextPage()">开启旅程</button>
+    </section>
+
+    <!-- 3 开篇记忆 -->
+    <section class="page" data-page="3">
+      <h2>你的端午记忆</h2>
+      <p class="sub">点击选择一项（也可点下方按钮进入下一页）</p>
+      <div class="choice-group">
+        <button type="button" class="choice-btn" data-mem="儿时包粽的清香">儿时包粽的清香</button>
+        <button type="button" class="choice-btn" data-mem="江边龙舟的鼓声">江边龙舟的鼓声</button>
+        <button type="button" class="choice-btn" data-mem="艾草挂门的习俗">艾草挂门的习俗</button>
+      </div>
+      <div id="memoryResult" class="popup"></div>
+      <button type="button" class="btn" id="memoryNext" style="margin-top:16px">下一页</button>
+    </section>
+
+    <!-- 4 挂艾草 -->
+    <section class="page" data-page="4">
+      <h2>挂艾草与菖蒲</h2>
+      <div class="tabs">
+        <span class="tab on">艾草</span>
+        <span class="tab">菖蒲</span>
+      </div>
+      <div class="tab-panel show card">
+        <p>端午悬艾，驱邪避瘟。《荆楚岁时记》载：采艾为人形，悬户上。</p>
+      </div>
+      <div class="tab-panel card">
+        <p>菖蒲叶如剑，民间称「水剑」，与艾草同挂门楣，寓意吉祥平安。</p>
+      </div>
+      <button type="button" class="btn-outline btn" data-popup="aiPop">点击了解更多</button>
+      <div id="aiPop" class="popup">艾草的芳香成分具有驱虫抑菌作用，是古人智慧的生活防疫。</div>
+      <p class="swipe-hint">左右切换标签 · 上滑下一页</p>
+    </section>
+
+    <!-- 5 佩香囊 -->
+    <section class="page" data-page="5">
+      <h2>佩香囊 · 巧手传香</h2>
+      <p class="sub">点击部件，完成香囊（互动游戏）</p>
+      <div class="craft-area">
+        <div class="craft-item">🧵 丝线</div>
+        <div class="craft-item">🌸 香料</div>
+        <div class="craft-item">🎀 流苏</div>
+      </div>
+      <div id="xiangnangSlot" class="craft-slot">将部件放入此处</div>
+      <div id="xnDone" class="popup">香囊已成！佩戴可避秽气、寄相思。</div>
+    </section>
+
+    <!-- 6 香囊文化 -->
+    <section class="page" data-page="6">
+      <h2>香囊文化</h2>
+      <div class="hotspots">
+        <span class="hotspot" style="left:10%;top:30%" data-popup="hs1">囊身</span>
+        <span class="hotspot" style="right:10%;top:20%" data-popup="hs2">流苏</span>
+        <span class="hotspot" style="left:40%;bottom:10%" data-popup="hs3">香料</span>
+      </div>
+      <div id="hs1" class="popup">囊身绣吉祥纹样，承载祈福之意。</div>
+      <div id="hs2" class="popup">流苏摇曳，步步生香。</div>
+      <div id="hs3" class="popup">丁香、艾叶等配伍，芳香醒脾。</div>
+    </section>
+
+    <!-- 7 包粽子 -->
+    <section class="page" data-page="7">
+      <h2>包粽子</h2>
+      <div class="steps">
+        <span class="step-dot">1</span>
+        <span class="step-dot">2</span>
+        <span class="step-dot">3</span>
+      </div>
+      <div id="zongziVisual" class="zongzi-visual">🫔</div>
+      <p id="zongTip" class="sub">下一步：选糯米与馅料</p>
+      <button type="button" class="btn zong-btn">点击进行一步</button>
+      <div id="zongDone" class="popup">粽子香飘十里，南北风味各千秋！</div>
+    </section>
+
+    <!-- 8 粽子文化 -->
+    <section class="page" data-page="8">
+      <h2>粽子文化 · 南甜北咸</h2>
+      <div class="tabs">
+        <span class="tab on">甜味</span>
+        <span class="tab">咸味</span>
+      </div>
+      <div class="tab-panel show card">
+        <p>北方多枣泥、豆沙；江南偏爱碱水粽、豆沙粽。</p>
+      </div>
+      <div class="tab-panel card">
+        <p>嘉兴肉粽、广东咸蛋黄肉粽，咸香馥郁。</p>
+      </div>
+      <button type="button" class="btn-outline btn" data-popup="zongPop">粽子的由来</button>
+      <div id="zongPop" class="popup">相传屈原投江，百姓投粽于水，以免鱼虾伤及遗体，遂成千古习俗。</div>
+    </section>
+
+    <!-- 9 五彩绳 -->
+    <section class="page" data-page="9">
+      <h2>系五彩绳</h2>
+      <p class="sub">点击颜色，了解五行寓意</p>
+      <div class="rope-colors">
+        <span style="background:#c0392b" data-tip="赤属火，主南方，象征热情与生命力。"></span>
+        <span style="background:#f1c40f" data-tip="黄属土，居中，寓意丰收与安稳。"></span>
+        <span style="background:#27ae60" data-tip="青属木，主东方，象征生长与希望。"></span>
+        <span style="background:#fff;border:1px solid #ccc" data-tip="白属金，主西方，代表纯洁与正气。"></span>
+        <span style="background:#2980b9" data-tip="黑属水，主北方，蕴含智慧与深沉。"></span>
+      </div>
+      <div id="ropePop" class="popup"></div>
+    </section>
+
+    <!-- 10 雄黄酒 -->
+    <section class="page" data-page="10">
+      <h2>饮雄黄酒</h2>
+      <p class="sub">点击额头，体验「画额」习俗</p>
+      <div id="forehead" class="forehead-zone">😊</div>
+      <div id="xhPop" class="popup">雄黄涂额，以避蛇虫。苏轼诗云：彩线轻缠红玉臂，小符斜挂绿云鬟。</div>
+    </section>
+
+    <!-- 11 赛龙舟 -->
+    <section class="page" data-page="11">
+      <h2>赛龙舟</h2>
+      <video controls playsinline webkit-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true" poster="" preload="metadata" style="width:100%;max-width:280px;border-radius:8px;min-height:140px;background:#000;margin:6px 0">
+        <source src="assets/dragon_boat.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+      </video>
+      <div class="scene-slider" style="margin-top:10px">
+        <div id="sceneTrack" class="scene-track">
+          <div class="scene-slide card">
+            <p>江畔集结，鼓声震天</p>
+            <p style="font-size:2rem;margin:6px 0">🥁🛶</p>
+          </div>
+          <div class="scene-slide card">
+            <p>百桨齐发，破浪争先</p>
+            <p style="font-size:1.6rem">🌊🚣</p>
+          </div>
+          <div class="scene-slide card">
+            <p>两岸欢呼，端午盛况</p>
+            <p style="font-size:2rem">🎉🏆</p>
+          </div>
+        </div>
+      </div>
+      <div class="slider-ctrl">
+        <button type="button" class="btn btn-outline" id="scenePrev">上一景</button>
+        <button type="button" class="btn btn-outline" id="sceneNext">下一景</button>
+      </div>
+    </section>
+
+    <!-- 12 龙舟文化 -->
+    <section class="page" data-page="12">
+      <h2>龙舟文化</h2>
+      <div class="hotspots" style="height:140px">
+        <span class="hotspot" style="left:5%;top:40%" data-popup="lb1">龙头</span>
+        <span class="hotspot" style="left:42%;top:50%" data-popup="lb2">龙身</span>
+        <span class="hotspot" style="right:5%;top:35%" data-popup="lb3">龙尾</span>
+      </div>
+      <div id="lb1" class="popup">龙头雕刻威严，点睛后「活」了起来。</div>
+      <div id="lb2" class="popup">龙身修长，容纳数十桨手，讲究协同。</div>
+      <div id="lb3" class="popup">龙尾上扬，寓意乘风破浪、勇往直前。</div>
+    </section>
+
+    <!-- 13 端午诗词 -->
+    <section class="page" data-page="13">
+      <h2>端午诗词</h2>
+      <div class="poem-card">
+        <p id="poemTitle" style="font-size:1.1rem;font-weight:bold;color:#e8d5a3;margin-bottom:4px"></p>
+        <p id="poemDynasty" style="font-size:.75rem;opacity:.7;margin-bottom:8px"></p>
+        <p id="poemText" style="white-space:pre-line;line-height:2.2;font-size:1rem"></p>
+        <p id="poemAuthor" style="font-size:.85rem;margin-top:12px;opacity:.8"></p>
+      </div>
+      <div class="poem-nav">
+        <button type="button" class="btn btn-outline" id="poemPrev">上一首</button>
+        <button type="button" class="btn" id="poemRead">朗诵</button>
+        <button type="button" class="btn btn-outline" id="poemNext">下一首</button>
+      </div>
+    </section>
+
+    <!-- 14 祈福海报 -->
+    <section class="page" data-page="14">
+      <h2>端午祈福海报</h2>
+      <p class="sub">输入你的名字，生成专属海报并保存</p>
+      <input type="text" id="posterName" class="poster-input" placeholder="请输入姓名" maxlength="8">
+      <button type="button" class="btn" id="genPoster">生成海报</button>
+      <canvas id="posterCanvas"></canvas>
+      <button type="button" class="btn" id="savePoster" style="display:none">保存图片</button>
+    </section>
+
+    <!-- 15 当代端午 -->
+    <section class="page" data-page="15">
+      <h2>当代端午</h2>
+      <div class="card">
+        <p>非遗进校园、龙舟入奥、云端包粽……传统与现代交融，端午焕发新活力。</p>
+      </div>
+      <div class="vid-placeholder card" style="min-height:120px;display:flex;align-items:center;justify-content:center">
+        <video controls playsinline webkit-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true" style="width:100%;max-width:300px;border-radius:8px;min-height:140px">
+          <source src="assets/modern.mp4" type="video/mp4">
+        </video>
+      </div>
+    </section>
+
+    <!-- 16 尾页传承 -->
+    <section class="page" data-page="16">
+      <h2>传承在指尖</h2>
+      <div class="share-box">
+        <p>每一缕艾香、每一声鼓点，都是中华文化的脉搏。愿你我共同守护这份记忆。</p>
+        <button type="button" class="btn" onclick="navigator.share&&navigator.share({title:'指尖上的传承·端午',text:'端午安康！',url:location.href}).catch(function(){alert('可截图分享本页')})">分享给好友</button>
+      </div>
+    </section>
+
+    <!-- 17 致谢 -->
+    <section class="page" data-page="17">
+      <h2>致谢</h2>
+      <p class="sub">感谢参与互动体验的每一位朋友</p>
+      <canvas id="qrCanvas" style="width:120px;height:120px;margin:12px auto"></canvas>
+      <p class="sub" style="font-size:.7rem;opacity:.7">扫码分享给朋友</p>
+      <p class="sub" style="font-size:.75rem">制作：传统文化交互传播课程作业</p>
+    </section>
+
+    <!-- 18 结束 -->
+    <section class="page" data-page="18">
+      <h1>端午安康</h1>
+      <p class="sub" style="font-size:1.1rem;letter-spacing:.3em">愿你岁岁无忧</p>
+      <div style="font-size:4rem;margin:24px 0;animation:float 2s ease-in-out infinite">🌿🛶🫔</div>
+      <button type="button" class="btn" onclick="goToPage(1)">再看一遍</button>
+    </section>
+  </div>
+
+  <button type="button" class="page-nav-btn" id="globalNext" title="下一页">下一页 ▼</button>
+  <button type="button" class="page-nav-btn page-nav-prev" id="globalPrev" title="上一页">▲ 上一页</button>
+  <p class="nav-hint">上滑/下滑、滚轮或点右下角按钮翻页</p>
+  <script src="js/main.js"></script>
+</body>
+</html>
